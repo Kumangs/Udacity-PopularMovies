@@ -28,6 +28,7 @@ public class MovieGridAdapter extends ArrayAdapter<MovieData> {
 
         ImageView posterView = (ImageView) convertView.findViewById(R.id.poster_image);
 
+        //Set image with Picasso into the ImageView
         Picasso.with(getContext()).load("http://image.tmdb.org/t/p/w500/" + movieData.getPoster()).into(posterView);
 
         return convertView;

@@ -1,20 +1,28 @@
 package com.raulgsal.android.popularmovies;
 
+/**
+* This class contains all necessary data of the movies
+*/
 
 import java.io.Serializable;
 
 public class MovieData implements Serializable {
 
+    //Class variables
     private String poster;
     private String title;
     private String sypnosis;
     private String rating;
     private String date;
 
+    //Object constructor
     public MovieData() {
         super();
     }
 
+    /**
+    * Getters and setters for all variables of the object
+    */
     public void setPoster(String poster){
         this.poster = poster;
     }

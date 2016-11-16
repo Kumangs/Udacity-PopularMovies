@@ -28,6 +28,7 @@ public class DetailActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
+        // The detail Activity called via intent.  Inspect the intent for movie data.
         Intent intent = getActivity().getIntent();
         if (intent !=null && intent.hasExtra("MovieDetail")) {
             movieData = (MovieData) intent.getSerializableExtra("MovieDetail");
@@ -44,14 +45,7 @@ public class DetailActivityFragment extends Fragment {
 
             ((TextView) rootView.findViewById(R.id.sypnosis_text)).setText(movieData.getSypnosis());
 
-
-
-
         }
-
-
-
-
 
         return rootView;
     }
