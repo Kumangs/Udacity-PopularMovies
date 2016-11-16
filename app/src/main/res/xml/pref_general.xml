@@ -8,6 +8,8 @@
         android:entryValues="@array/prefSortValues"
         android:defaultValue="0"
         android:inputType="text"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
         android:singleLine="true" />
 
 </PreferenceScreen>

@@ -13,6 +13,6 @@
         android:gravity="center"
         android:verticalSpacing="1dp"
         android:horizontalSpacing="1dp"
-        />
+        android:clickable="true" />
 
 </RelativeLayout>

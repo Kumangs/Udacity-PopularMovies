@@ -1,5 +1,6 @@
 package com.raulgsal.android.popularmovies;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.json.JSONArray;
@@ -44,6 +46,17 @@ public class MainActivityFragment extends Fragment {
         GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
         gridview.setAdapter(movieGridAdapter);
 
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // launch DetailActiviy
+                MovieData movieDetail = movieGridAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(),DetailActivity.class)
+                       .putExtra("MovieDetail", movieDetail);
+                startActivity(intent);
+
+            }
+        });
         return rootView;
     }
 
@@ -71,6 +84,10 @@ public class MainActivityFragment extends Fragment {
 
             final String OWM_RESULTS = "results";
             final String OWM_POSTER = "poster_path";
+            final String OWM_TITLE = "title";
+            final String OWN_SYPNOSIS = "overview";
+            final String OWN_RATING = "vote_average";
+            final String OWN_DATE = "release_date";
 
             JSONObject movieJson = new JSONObject(movieJsonStr);
             JSONArray movieArray = movieJson.getJSONArray(OWM_RESULTS);
@@ -79,13 +96,26 @@ public class MainActivityFragment extends Fragment {
 
             for(int i = 0; i < numMovies; i++) {
                 String poster;
+                String title;
+                String synopsis;
+                String rating;
+                String date;
 
                 JSONObject movieDescription = movieArray.getJSONObject(i);
 
                 poster = movieDescription.getString(OWM_POSTER);
+                title = movieDescription.getString(OWM_TITLE);
+                synopsis = movieDescription.getString(OWN_SYPNOSIS);
+                rating = movieDescription.getString(OWN_RATING);
+                date = movieDescription.getString(OWN_DATE);
+
 
                 movieData[i] = new MovieData();
                 movieData[i].setPoster(poster);
+                movieData[i].setTitle(title);
+                movieData[i].setSypnosis(synopsis);
+                movieData[i].setRating(rating);
+                movieData[i].setDate(date);
 
             }
 
