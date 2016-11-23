@@ -30,7 +30,7 @@
             <ImageView
                 android:id="@+id/poster_detail_image"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/poster_detail"
+                android:layout_height="@dimen/poster_detail_land"
                 android:layout_weight="1"
                 android:scaleType="fitXY"/>
 

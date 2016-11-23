@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -79,7 +80,7 @@ public class MainActivityFragment extends Fragment {
         private final String LOG_TAG = FetchMovieTask.class.getSimpleName();
 
 
-        private MovieData[] getMovieDataFromJson(String movieJsonStr, int numMovies)
+        private MovieData[] getMovieDataFromJson(String movieJsonStr)
                 throws JSONException {
 
             // These are the names of the JSON objects that need to be extracted.
@@ -93,9 +94,9 @@ public class MainActivityFragment extends Fragment {
             JSONObject movieJson = new JSONObject(movieJsonStr);
             JSONArray movieArray = movieJson.getJSONArray(OWM_RESULTS);
 
-            MovieData[] movieData = new MovieData[numMovies];
+            MovieData[] movieData = new MovieData[movieArray.length()];
 
-            for(int i = 0; i < numMovies; i++) {
+            for(int i = 0; i < movieArray.length(); i++) {
                 String poster;
                 String title;
                 String synopsis;
@@ -140,7 +141,7 @@ public class MainActivityFragment extends Fragment {
 
             // Will contain the raw JSON response as a string.
             String movieJsonStr = null;
-            int numMovies = 8;
+            //int numMovies = 8;
 
 
             try {
@@ -202,7 +203,7 @@ public class MainActivityFragment extends Fragment {
             }
 
             try {
-                return getMovieDataFromJson(movieJsonStr, numMovies);
+                return getMovieDataFromJson(movieJsonStr);
             } catch (JSONException e) {
                 Log.e(LOG_TAG, e.getMessage(), e);
                 e.printStackTrace();
